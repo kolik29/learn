@@ -1,0 +1,35 @@
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\bin\Debug\learn.exe.config
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\bin\Debug\learn.exe
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\bin\Debug\learn.pdb
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\MainWindow.g.cs
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\App.g.cs
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\learn_MarkupCompile.cache
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\learn_MarkupCompile.lref
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\MainWindow.baml
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\learn.g.resources
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\learn.Properties.Resources.resources
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\learn.csproj.GenerateResource.Cache
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\learn.exe
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\learn.pdb
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\learn.csprojResolveAssemblyReference.cache
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\App.baml
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\ContentWindow.g.cs
+C:\Users\kolik\OneDrive\Документы\Visual Studio 2015\Projects\learn\learn\obj\Debug\ContentWindow.baml
+D:\learn\learn\bin\Debug\learn.exe.config
+D:\learn\learn\bin\Debug\learn.exe
+D:\learn\learn\bin\Debug\learn.pdb
+D:\learn\learn\obj\Debug\learn.csprojResolveAssemblyReference.cache
+D:\learn\learn\obj\Debug\ContentWindow.g.cs
+D:\learn\learn\obj\Debug\MainWindow.g.cs
+D:\learn\learn\obj\Debug\App.g.cs
+D:\learn\learn\obj\Debug\learn_MarkupCompile.cache
+D:\learn\learn\obj\Debug\learn_MarkupCompile.lref
+D:\learn\learn\obj\Debug\App.baml
+D:\learn\learn\obj\Debug\ContentWindow.baml
+D:\learn\learn\obj\Debug\MainWindow.baml
+D:\learn\learn\obj\Debug\learn.g.resources
+D:\learn\learn\obj\Debug\learn.Properties.Resources.resources
+D:\learn\learn\obj\Debug\learn.csproj.GenerateResource.cache
+D:\learn\learn\obj\Debug\learn.csproj.CoreCompileInputs.cache
+D:\learn\learn\obj\Debug\learn.exe
+D:\learn\learn\obj\Debug\learn.pdb

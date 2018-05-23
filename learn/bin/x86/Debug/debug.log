@@ -1,0 +1,4 @@
+[0521/094919.240:INFO:CONSOLE(1)] "Uncaught SyntaxError: Illegal return statement", source: about:blank (1)
+[0521/095033.691:INFO:CONSOLE(1)] "Uncaught SyntaxError: Illegal return statement", source: about:blank (1)
+[0521/095409.959:INFO:CONSOLE(1)] "Uncaught TypeError: Cannot read property 'outerHTML' of undefined", source: about:blank (1)
+[0521/095421.718:INFO:CONSOLE(1)] "Uncaught TypeError: Cannot read property 'contentDocument' of undefined", source: about:blank (1)
