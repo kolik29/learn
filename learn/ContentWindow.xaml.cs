@@ -14,8 +14,6 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel; //объектаная модель для List
 using CefSharp; //для работы с встроенным браузером на основе Chromium
 using CefSharp.Wpf; //для работы с Chromium в wpf
-using System.IO; //для работы с файлами
-using img = System.Drawing; //для работы с картинками
 
 namespace learn //объявление пространства имен learns
 {
@@ -47,6 +45,8 @@ namespace learn //объявление пространства имен learns
             public string Name { get; set; } //объявление параметров
             public ObservableCollection<tree_node> Nodes { get; set; }
         }
+
+        ChromiumWebBrowser chromiumWebBrowser;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -102,43 +102,18 @@ namespace learn //объявление пространства имен learns
                 }
             });
 
-            content.Visibility = Visibility.Collapsed;
+            //content.Visibility = Visibility.Collapsed;
 
             _tree.ItemsSource = nodes;
 
             chromiumWebBrowser = new ChromiumWebBrowser();
-            chromiumWebBrowser.Address = Environment.CurrentDirectory +  @"\include\index.html";
+            //chromiumWebBrowser.Address = Environment.CurrentDirectory +  @"\include\index.html";
             chromiumWebBrowser.Margin = new Thickness(5, 0, 5, 5);
             chromiumWebBrowser.Width = double.NaN;
             chromiumWebBrowser.Height = double.NaN;
 
-            Grid.SetRow(chromiumWebBrowser, 1);
+            //Grid.SetRow(chromiumWebBrowser, 1);
             grid.Children.Add(chromiumWebBrowser);
-        }
-
-        ChromiumWebBrowser chromiumWebBrowser;
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string text = chromiumWebBrowser.EvaluateScriptAsync(@"window.frames[0].document.body.innerHTML").Result.Result.ToString();
-            int strStart = text.IndexOf("<img src=\"") + 10,
-                len = text.IndexOf("\">", strStart) - 10;
-
-            string path = text.Substring(strStart, len),
-                base64String = string.Empty;
-
-            using (img.Image image = img.Image.FromFile(path))
-            {
-                using (MemoryStream m = new MemoryStream())
-                {
-                    image.Save(m, image.RawFormat);
-                    byte[] imageBytes = m.ToArray();
-                    
-                    base64String = Convert.ToBase64String(imageBytes);
-                }
-            }
-
-            MessageBox.Show(text.Replace(text.Substring(strStart, len), base64String));
         }
     }
 }

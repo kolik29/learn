@@ -24,7 +24,6 @@
                 </LinearGradientBrush>
             </DockPanel.Background>
             <Label Content="Пользователь" Height="40" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Foreground="White"/>
-            <Button Content="Button" Height="40" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         </DockPanel>
         <DockPanel Height="529" LastChildFill="False" VerticalAlignment="Top" Width="250" DockPanel.Dock="Right" Grid.Row="2" Grid.Column="2">
                 <DockPanel LastChildFill="False" VerticalAlignment="Top" Width="230" DockPanel.Dock="Right" Margin="10">
@@ -58,8 +57,8 @@
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="150*"/>
             </Grid.RowDefinitions>
-            <Label Content="Пользователь" DockPanel.Dock="Top" Margin="10" FontSize="18" FontWeight="Bold" Foreground="#FF00742C"/>
-            <DockPanel LastChildFill="False" DockPanel.Dock="Top" Grid.Row="1" Name="content" d:IsHidden="True">
+            <Label Content="Пользователь" DockPanel.Dock="Top" Margin="10" FontSize="18" FontWeight="Bold" Foreground="#FF00742C" Name="title"/>
+            <DockPanel LastChildFill="False" DockPanel.Dock="Top" Grid.Row="1" Name="content">
                 <Label Content="Фамилия: " VerticalAlignment="Top" DockPanel.Dock="Top" x:Name="fam"/>
                 <Label Content="Имя: " VerticalAlignment="Top" DockPanel.Dock="Top" x:Name="f_name"/>
                 <Label Content="Отчество: " VerticalAlignment="Top" DockPanel.Dock="Top" x:Name="l_name"/>

@@ -654,7 +654,20 @@
 
         // URL
         else if (popupName === "url") {
-            $popup.html('<label>Путь до файла: <br /><input id="imgpath" type="text" value="" style="width:200px" /></label><br /><input type="button" value="Готово" />');
+            $popup.html('<script type="text/javascript">' +
+                            'function handleFiles() {' +
+                                'var reader = new FileReader(),' +
+                                    'input = document.getElementById("inputfile").files[0],' +
+                                    'output = document.getElementById("imgpath");' +
+                                'reader.addEventListener("loadend", function(result) {' +
+                                    'output.value = result.target.result;' +
+                                    'console.log(result.target.result);' +
+                                '}, false);' +
+                                'reader.readAsDataURL(input);' +
+                            '}' +
+                        '</script>' +
+                        '<input id="imgpath" type="text" value="" style="width:200px; display: none" /><input type="file" id="inputfile" onchange="handleFiles()"><br /><input type="button" value="Готово" id="readyFile" />');
+            
             popupTypeClass = PROMPT_CLASS;
         }
 
