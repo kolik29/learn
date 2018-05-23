@@ -200,3 +200,5 @@ D:\vs2018\learn\learn\obj\x86\Debug\learn.csproj.GenerateResource.cache
 D:\vs2018\learn\learn\obj\x86\Debug\learn.csproj.CoreCompileInputs.cache
 D:\vs2018\learn\learn\obj\x86\Debug\learn.exe
 D:\vs2018\learn\learn\obj\x86\Debug\learn.pdb
+D:\learn\learn\obj\x86\Debug\adminWindow.g.cs
+D:\learn\learn\obj\x86\Debug\adminWindow.baml
