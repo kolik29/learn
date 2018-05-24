@@ -27,7 +27,7 @@ namespace learn
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ContentWindow cw = new ContentWindow();
+            adminWindow cw = new adminWindow();
             cw.Show();
             this.Close();
         }
