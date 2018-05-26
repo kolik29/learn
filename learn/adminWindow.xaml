@@ -76,7 +76,6 @@
                     </Border>
                 </DockPanel>
             </DockPanel>
-
         </DockPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
