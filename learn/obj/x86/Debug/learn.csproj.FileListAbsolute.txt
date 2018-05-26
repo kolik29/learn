@@ -202,13 +202,3 @@ D:\vs2018\learn\learn\obj\x86\Debug\learn.exe
 D:\vs2018\learn\learn\obj\x86\Debug\learn.pdb
 D:\learn\learn\obj\x86\Debug\adminWindow.g.cs
 D:\learn\learn\obj\x86\Debug\adminWindow.baml
-D:\learn\learn\bin\x86\Debug\EntityFramework.dll
-D:\learn\learn\bin\x86\Debug\EntityFramework.SqlServer.dll
-D:\learn\learn\bin\x86\Debug\System.Data.SQLite.dll
-D:\learn\learn\bin\x86\Debug\System.Data.SQLite.EF6.dll
-D:\learn\learn\bin\x86\Debug\System.Data.SQLite.Linq.dll
-D:\learn\learn\bin\x86\Debug\EntityFramework.xml
-D:\learn\learn\bin\x86\Debug\EntityFramework.SqlServer.xml
-D:\learn\learn\bin\x86\Debug\System.Data.SQLite.xml
-D:\learn\learn\bin\x86\Debug\System.Data.SQLite.dll.config
-D:\learn\learn\obj\x86\Debug\learn.csproj.CopyComplete
