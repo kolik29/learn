@@ -33,3 +33,6 @@ D:\learn\learn\obj\Debug\learn.csproj.GenerateResource.cache
 D:\learn\learn\obj\Debug\learn.csproj.CoreCompileInputs.cache
 D:\learn\learn\obj\Debug\learn.exe
 D:\learn\learn\obj\Debug\learn.pdb
+C:\Users\kolik\OneDrive\Документы\GitHub\learn\learn\bin\Debug\learn.exe.config
+C:\Users\kolik\OneDrive\Документы\GitHub\learn\learn\obj\Debug\learn.exe
+C:\Users\kolik\OneDrive\Документы\GitHub\learn\learn\obj\Debug\learn.pdb
