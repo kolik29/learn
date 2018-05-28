@@ -23,7 +23,7 @@
                     <GradientStop Color="#FF00742C" Offset="1"/>
                 </LinearGradientBrush>
             </DockPanel.Background>
-            <Label Content="Администратор" Height="40" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Foreground="White"/>
+            <Label Content="На главную" Height="40" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Foreground="White"/>
         </DockPanel>
         <DockPanel Height="529" LastChildFill="False" VerticalAlignment="Top" Width="250" DockPanel.Dock="Right" Grid.Row="2" Grid.Column="2">
             <DockPanel LastChildFill="False" VerticalAlignment="Top" Width="230" DockPanel.Dock="Top" Margin="10">
@@ -82,9 +82,39 @@
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="150*"/>
             </Grid.RowDefinitions>
-            <Label Content="Пользователь" DockPanel.Dock="Top" Margin="10" FontSize="18" FontWeight="Bold" Foreground="#FF00742C"/>
+            <Label Content="Пользователь" DockPanel.Dock="Top" Margin="10,10,388,10" FontSize="18" FontWeight="Bold" Foreground="#FF00742C"/>
             <DockPanel LastChildFill="False" DockPanel.Dock="Top" Grid.Row="1">
-                <DataGrid VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5"/>
+                <DockPanel LastChildFill="False" VerticalAlignment="Top" DockPanel.Dock="Top" Height="30">
+                    <Label Content="Фамилия:" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100"/>
+                    <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False" VerticalAlignment="Top" DockPanel.Dock="Top" Height="30">
+                    <Label Content="Имя:" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100"/>
+                    <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False" VerticalAlignment="Top" DockPanel.Dock="Top" Height="30">
+                    <Label Content="Отчество:" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100"/>
+                    <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False" VerticalAlignment="Top" DockPanel.Dock="Top" Height="30">
+                    <Label Content="Группа:" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100"/>
+                    <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False" VerticalAlignment="Top" DockPanel.Dock="Top" Height="30">
+                    <Label Content="Логин:" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100"/>
+                    <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False" VerticalAlignment="Top" DockPanel.Dock="Top" Height="30">
+                    <Label Content="Пароль:" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100"/>
+                    <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150"/>
+                    <Button Content="Сгенерировать" Height="20" VerticalAlignment="Center" Width="102" Margin="8,0,0,0"/>
+                </DockPanel>
+                <DockPanel LastChildFill="False" VerticalAlignment="Top" DockPanel.Dock="Top">
+                    <Button Content="Сохранить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80"/>
+                    <Button Content="Добавить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80"/>
+                    <Button Content="Удалить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80"/>
+                </DockPanel>
+                <DataGrid VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5"/>                
             </DockPanel>
         </Grid>
     </Grid>
