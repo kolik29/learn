@@ -111,9 +111,9 @@
                     <Button Content="Сгенерировать" Height="20" VerticalAlignment="Center" Width="102" Margin="8,0,0,0" Name="generate_pass" Click="generate_pass_Click"/>
                 </DockPanel>
                 <DockPanel LastChildFill="False" VerticalAlignment="Top" DockPanel.Dock="Top">
-                    <Button Content="Сохранить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80"/>
-                    <Button Content="Добавить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80"/>
-                    <Button Content="Удалить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80"/>
+                    <Button Content="Сохранить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80" Name="save"/>
+                    <Button Content="Добавить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80" Name="add" Click="add_Click"/>
+                    <Button Content="Удалить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80" Name="delete"/>
                 </DockPanel>
                 <DataGrid VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5"/>
             </DockPanel>
