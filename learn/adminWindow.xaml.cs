@@ -15,6 +15,7 @@ using CefSharp.Wpf; //для работы с Chromium в wpf
 using System.Data.SQLite;
 using System.IO;
 using System.Collections.ObjectModel;
+using System.Data.Common;
 
 namespace learn
 {
@@ -61,39 +62,41 @@ namespace learn
             browser_panel.Children.Add(chromiumWebBrowser);
 
             SQLiteConnection conn = new SQLiteConnection("Data Source=base.db; Version=3;");
-            try
+            //try
             {
+                List<string> temple_list = new List<string>();
+
                 conn.Open();
                 SQLiteCommand sql_command = conn.CreateCommand();
                 sql_command.CommandText = "SELECT grup FROM users";
 
                 SQLiteDataReader reader = sql_command.ExecuteReader();
-                reader.Read();
 
-                List<string> groups = new List<string>();
+                foreach (DbDataRecord record in reader)
+                    temple_list.Add(reader["grup"].ToString());
 
-                while (reader.Read())
-                    groups.Add(reader[0].ToString());
-
-                groups = groups.Distinct().ToList();
-
-                foreach (string gr in groups)
-                    nodes.Add(new tree_node { Name = gr });
-
-                for (int i = 0; i < groups.Count; i++)
+                temple_list = temple_list.Distinct().ToList();
+                foreach (string s in temple_list)
                 {
-                    sql_command.CommandText = "SELECT lName, fName, mName FROM users WHERE grup='" + groups[i].ToString() + "'";
-                    while (reader.Read())
-                    {
-                        nodes[i].Nodes.Add(new tree_node { Name = reader[0].ToString() });
-                    }
+                    reader.Close();
+                    ObservableCollection<tree_node> temple_nodes = new ObservableCollection<tree_node>();
+                    sql_command.CommandText = "SELECT * FROM users WHERE grup='" + s + "'";
+                    reader = sql_command.ExecuteReader();
+                    MessageBox.Show("hgj");
+                    foreach (DbDataRecord record in reader)
+                        temple_nodes.Add(new tree_node {
+                            Name = (record["sName"].ToString() != "") ? record["sName"].ToString() + " " + record["fName"].ToString() + " " + record["mName"].ToString() : record["login"].ToString()
+                        });
+
+                    nodes.Add(new tree_node { Name = s, Nodes = temple_nodes });
                 }
+                MessageBox.Show("j");
             }
 
-            catch (SQLiteException ex)
+            /*catch (SQLiteException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }*/
 
             all_users.ItemsSource = nodes;
         }
