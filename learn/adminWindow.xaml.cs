@@ -62,7 +62,7 @@ namespace learn
             browser_panel.Children.Add(chromiumWebBrowser);
 
             SQLiteConnection conn = new SQLiteConnection("Data Source=base.db; Version=3;");
-            //try
+            try
             {
                 List<string> temple_list = new List<string>();
 
@@ -96,10 +96,10 @@ namespace learn
                 }
             }
 
-            /*catch (SQLiteException ex)
+            catch (SQLiteException ex)
             {
                 MessageBox.Show(ex.Message);
-            }*/
+            }
 
             all_users.ItemsSource = nodes;
         }
@@ -131,9 +131,9 @@ namespace learn
                     sql_command.ExecuteNonQuery();
                 }
                 else
-                {
                     MessageBox.Show("Пользователь с таким логином уже существует.");
-                }
+
+                MessageBox.Show("Пользователь успешно добавлен!", "Добавление пользователя", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (SQLiteException ex)
             {
