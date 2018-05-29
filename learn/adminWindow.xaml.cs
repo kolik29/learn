@@ -82,15 +82,18 @@ namespace learn
                     ObservableCollection<tree_node> temple_nodes = new ObservableCollection<tree_node>();
                     sql_command.CommandText = "SELECT * FROM users WHERE grup='" + s + "'";
                     reader = sql_command.ExecuteReader();
-                    MessageBox.Show("hgj");
                     foreach (DbDataRecord record in reader)
-                        temple_nodes.Add(new tree_node {
-                            Name = (record["sName"].ToString() != "") ? record["sName"].ToString() + " " + record["fName"].ToString() + " " + record["mName"].ToString() : record["login"].ToString()
-                        });
+                    {
+                        string s_name = "";
+                        if (record[1].ToString() != "")
+                            s_name = record[1].ToString() + " " + record[2].ToString() + " " + record[3].ToString();
+                        else
+                            s_name = record[5].ToString();
+                        temple_nodes.Add(new tree_node { Name = s_name });
+                    }
 
                     nodes.Add(new tree_node { Name = s, Nodes = temple_nodes });
                 }
-                MessageBox.Show("j");
             }
 
             /*catch (SQLiteException ex)
