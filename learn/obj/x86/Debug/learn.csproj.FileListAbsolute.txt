@@ -312,3 +312,13 @@ D:\learn\learn\bin\x86\Debug\EntityFramework.SqlServer.xml
 D:\learn\learn\bin\x86\Debug\System.Data.SQLite.xml
 D:\learn\learn\bin\x86\Debug\System.Data.SQLite.dll.config
 D:\learn\learn\obj\x86\Debug\learn.csproj.CopyComplete
+C:\Users\kolik\OneDrive\Документы\GitHub\learn\learn\bin\x86\Debug\EntityFramework.dll
+C:\Users\kolik\OneDrive\Документы\GitHub\learn\learn\bin\x86\Debug\EntityFramework.SqlServer.dll
+C:\Users\kolik\OneDrive\Документы\GitHub\learn\learn\bin\x86\Debug\System.Data.SQLite.dll
+C:\Users\kolik\OneDrive\Документы\GitHub\learn\learn\bin\x86\Debug\System.Data.SQLite.EF6.dll
+C:\Users\kolik\OneDrive\Документы\GitHub\learn\learn\bin\x86\Debug\System.Data.SQLite.Linq.dll
+C:\Users\kolik\OneDrive\Документы\GitHub\learn\learn\bin\x86\Debug\EntityFramework.xml
+C:\Users\kolik\OneDrive\Документы\GitHub\learn\learn\bin\x86\Debug\EntityFramework.SqlServer.xml
+C:\Users\kolik\OneDrive\Документы\GitHub\learn\learn\bin\x86\Debug\System.Data.SQLite.xml
+C:\Users\kolik\OneDrive\Документы\GitHub\learn\learn\bin\x86\Debug\learn.exe
+C:\Users\kolik\OneDrive\Документы\GitHub\learn\learn\bin\x86\Debug\learn.pdb

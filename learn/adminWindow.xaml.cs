@@ -51,7 +51,6 @@ namespace learn
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<tree_node> nodes = new ObservableCollection<tree_node>();
             chromiumWebBrowser = new ChromiumWebBrowser();
             chromiumWebBrowser.Address = Environment.CurrentDirectory +  @"\include\index.html";
             chromiumWebBrowser.Margin = new Thickness(5, 30, 5, 40);
@@ -61,47 +60,7 @@ namespace learn
             Grid.SetRow(chromiumWebBrowser, 1);
             browser_panel.Children.Add(chromiumWebBrowser);
 
-            SQLiteConnection conn = new SQLiteConnection("Data Source=base.db; Version=3;");
-            try
-            {
-                List<string> temple_list = new List<string>();
-
-                conn.Open();
-                SQLiteCommand sql_command = conn.CreateCommand();
-                sql_command.CommandText = "SELECT grup FROM users";
-
-                SQLiteDataReader reader = sql_command.ExecuteReader();
-
-                foreach (DbDataRecord record in reader)
-                    temple_list.Add(reader["grup"].ToString());
-
-                temple_list = temple_list.Distinct().ToList();
-                foreach (string s in temple_list)
-                {
-                    reader.Close();
-                    ObservableCollection<tree_node> temple_nodes = new ObservableCollection<tree_node>();
-                    sql_command.CommandText = "SELECT * FROM users WHERE grup='" + s + "'";
-                    reader = sql_command.ExecuteReader();
-                    foreach (DbDataRecord record in reader)
-                    {
-                        string s_name = "";
-                        if (record[1].ToString() != "")
-                            s_name = record[1].ToString() + " " + record[2].ToString() + " " + record[3].ToString();
-                        else
-                            s_name = record[5].ToString();
-                        temple_nodes.Add(new tree_node { Name = s_name });
-                    }
-
-                    nodes.Add(new tree_node { Name = s, Nodes = temple_nodes });
-                }
-            }
-
-            catch (SQLiteException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            all_users.ItemsSource = nodes;
+            load_user_list();
         }
 
         private void add_Click(object sender, RoutedEventArgs e)
@@ -134,6 +93,93 @@ namespace learn
                     MessageBox.Show("Пользователь с таким логином уже существует.");
 
                 MessageBox.Show("Пользователь успешно добавлен!", "Добавление пользователя", MessageBoxButton.OK, MessageBoxImage.Information);
+                load_user_list();
+                lName.Text = "";
+                fName.Text = "";
+                mName.Text = "";
+                group.Text = "";
+                login.Text = "";
+                pass.Text = "";
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void load_user_list()
+        {
+            ObservableCollection<tree_node> nodes = new ObservableCollection<tree_node>();
+            SQLiteConnection conn = new SQLiteConnection("Data Source=base.db; Version=3;");
+            try
+            {
+                List<string> temple_list = new List<string>();
+
+                conn.Open();
+                SQLiteCommand sql_command = conn.CreateCommand();
+                sql_command.CommandText = "SELECT grup FROM users";
+
+                SQLiteDataReader reader = sql_command.ExecuteReader();
+
+                foreach (DbDataRecord record in reader)
+                    temple_list.Add(reader["grup"].ToString());
+
+                temple_list = temple_list.Distinct().ToList();
+                foreach (string s in temple_list)
+                {
+                    reader.Close();
+                    ObservableCollection<tree_node> temple_nodes = new ObservableCollection<tree_node>();
+                    sql_command.CommandText = "SELECT * FROM users WHERE grup='" + s + "'";
+                    reader = sql_command.ExecuteReader();
+                    foreach (DbDataRecord record in reader)
+                    {
+                        string s_name = "";
+                        if (record[1].ToString() != "")
+                            s_name = record[1].ToString() + " " + record[2].ToString() + " " + record[3].ToString() + " (" + record[5].ToString() + ")";
+                        else
+                            s_name = record[5].ToString();
+                        temple_nodes.Add(new tree_node { Name = s_name });
+                    }
+
+                    nodes.Add(new tree_node { Name = s, Nodes = temple_nodes });
+                }
+            }
+
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            all_users.ItemsSource = nodes;
+        }
+
+        private void all_users_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            TreeView tv = new TreeView();
+            tv = (TreeView)sender;
+            tree_node tvi = new tree_node();
+            tvi = (tree_node)tv.SelectedItem;
+
+            SQLiteConnection conn = new SQLiteConnection("Data Source=base.db; Version=3;");
+            try
+            {
+                conn.Open();
+                SQLiteCommand sql_command = conn.CreateCommand();
+                if (tvi.Name.Contains("("))
+                    sql_command.CommandText = "SELECT * FROM users WHERE login='" + tvi.Name.Split('(')[1].Split(')')[0] + "'";
+                else
+                    sql_command.CommandText = "SELECT * FROM users WHERE login='" + tvi.Name + "'";
+
+                SQLiteDataReader reader = sql_command.ExecuteReader();
+                reader.Read();
+                
+                load_user_list();
+                lName.Text = reader[1].ToString();
+                fName.Text = "";
+                mName.Text = "";
+                group.Text = "";
+                login.Text = "";
+                pass.Text = "";
             }
             catch (SQLiteException ex)
             {
