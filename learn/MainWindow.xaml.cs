@@ -33,7 +33,7 @@ namespace learn
             {
                 conn.Open();
                 SQLiteCommand sql_command = conn.CreateCommand();
-                sql_command.CommandText = "SELECT grup FROM users WHERE login='" + login.Text + "' AND pass='" + pass.Text + "'";
+                sql_command.CommandText = "SELECT grup FROM users WHERE login='" + login.Text + "' AND pass='" + pass.Password + "'";
 
                 SQLiteDataReader reader = sql_command.ExecuteReader();
                 reader.Read();
@@ -62,6 +62,11 @@ namespace learn
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            pass.Password = "";
         }
     }
 }

@@ -23,7 +23,7 @@
                     <GradientStop Color="#FF00742C" Offset="1"/>
                 </LinearGradientBrush>
             </DockPanel.Background>
-            <Label Content="На главную" Height="40" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Foreground="White"/>
+            <Label Content="На главную" Height="40" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Foreground="White" MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
         </DockPanel>
         <DockPanel Height="529" LastChildFill="False" VerticalAlignment="Top" Width="250" DockPanel.Dock="Right" Grid.Row="2" Grid.Column="2">
             <DockPanel LastChildFill="False" VerticalAlignment="Top" Width="230" DockPanel.Dock="Top" Margin="10">
@@ -83,8 +83,8 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="44*"/>
             </Grid.RowDefinitions>
-            <Label Content="Пользователь" Margin="10,10,388,10" FontSize="18" FontWeight="Bold" Foreground="#FF00742C"/>
-            <DockPanel LastChildFill="False" Grid.Row="1" Grid.RowSpan="2">
+            <Label Content="Главная" Margin="10,10,388,10" FontSize="18" FontWeight="Bold" Foreground="#FF00742C" Name="title_label"/>
+            <DockPanel LastChildFill="False" Grid.Row="1" Grid.RowSpan="2" Name="user_panel" Visibility="Collapsed">
                 <DockPanel LastChildFill="False" VerticalAlignment="Top" DockPanel.Dock="Top" Height="30">
                     <Label Content="Фамилия:" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100"/>
                     <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150" Name="lName"/>
@@ -111,9 +111,9 @@
                     <Button Content="Сгенерировать" Height="20" VerticalAlignment="Center" Width="102" Margin="8,0,0,0" Name="generate_pass" Click="generate_pass_Click"/>
                 </DockPanel>
                 <DockPanel LastChildFill="False" VerticalAlignment="Top" DockPanel.Dock="Top">
-                    <Button Content="Сохранить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80" Name="save"/>
+                    <Button Content="Сохранить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80" Name="save" Click="save_Click"/>
                     <Button Content="Добавить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80" Name="add" Click="add_Click"/>
-                    <Button Content="Удалить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80" Name="delete"/>
+                    <Button Content="Удалить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80" Name="delete" Click="delete_Click"/>
                 </DockPanel>
                 <DataGrid VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5"/>
             </DockPanel>
@@ -127,6 +127,10 @@
                     <Button Content="Удалить" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="80"/>
                 </DockPanel>
             </Grid>
+            <DockPanel  LastChildFill="False" Grid.Row="1" Grid.RowSpan="2" Name="select_panel">
+                <Button Content="Редактировать курсы" Height="40" VerticalAlignment="Top" Margin="5,6,5,5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="137" Name="add_theme" Click="add_theme_Click"/>
+                <Button Content="Редактировать пользователей" Height="40" VerticalAlignment="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Width="184" Name="add_user" Click="add_user_Click"/>
+            </DockPanel>
         </Grid>
     </Grid>
 </Window>

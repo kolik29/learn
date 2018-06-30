@@ -60,131 +60,171 @@ namespace learn
             Grid.SetRow(chromiumWebBrowser, 1);
             browser_panel.Children.Add(chromiumWebBrowser);
 
-            load_user_list();
+            get_userlist();
+        }
+
+        private List<List<string>> connect_to_bd(string command, bool read = true)
+        {
+            List<List<string>> result = new List<List<string>>();
+            SQLiteConnection conn = new SQLiteConnection("Data Source=base.db; Version=3;");
+            SQLiteCommand sql_command = conn.CreateCommand();
+            sql_command.CommandText = command;
+            SQLiteDataReader reader = null;
+            try
+            {
+                conn.Open();
+
+                if (!read)
+                    return null;
+
+                reader = sql_command.ExecuteReader();
+                reader.Read();
+                
+                foreach(DbDataRecord record in reader)
+                {
+                    List<string> temple = new List<string>();
+
+                    for (int i = 0; i < record.FieldCount; i++)
+                    {
+                        temple.Add(record[i].ToString());
+                    }
+
+                    result.Add(temple);
+                }
+
+                reader.Close();
+                conn.Close();
+                return result;
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
+        List<string> grups = new List<string>();
+        private void get_userlist()
+        {
+            List<List<string>> user_list = connect_to_bd("SELECT * FROM USERS");
+
+            grups = new List<string>();
+            foreach(List<string> g in user_list)
+                grups.Add(g[4]);
+
+            grups = grups.Distinct().ToList();
+
+            ObservableCollection<tree_node> nodes = new ObservableCollection<tree_node>();
+
+            foreach (string g in grups)
+            {
+                ObservableCollection<tree_node> t_nodes = new ObservableCollection<tree_node>();
+
+                foreach (List<string> u in user_list)
+                {
+                    if (u[4] == g)
+                    {
+                        if (u[1] != "")
+                            t_nodes.Add(new tree_node() {
+                                Name = u[1] + " " + u[2] + " " + u[3] + " (" + u[5] + ")"
+                            });
+                        else
+                            t_nodes.Add(new tree_node()
+                            {
+                                Name = u[5]
+                            });
+                    }
+                }
+
+                nodes.Add(new tree_node() {
+                    Name = g,
+                    Nodes = t_nodes
+                });
+            }
+            all_users.ItemsSource = nodes;
+        }
+
+        private void save_Click(object sender, RoutedEventArgs e)
+        {
+            connect_to_bd(@"UPDATE users SET lName = '" +  lName.Text + "', " +
+                                "fName = '" + fName.Text + "', " +
+                                "mName = '" + mName.Text + "', " +
+                                "grup = '" + group.Text + "', " +
+                                "login = '" + login.Text + "', " +
+                                "pass = '" + pass.Text + "'" + 
+                                "WHERE login = '" + login.Text + "';", false);
         }
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=base.db; Version=3;");
-            try
-            {
-                conn.Open();
-                SQLiteCommand sql_command = conn.CreateCommand();
-                sql_command.CommandText = "SELECT * FROM users WHERE login='" + login.Text + "'";
-
-                SQLiteDataReader reader = sql_command.ExecuteReader();
-                reader.Read();
-
-                if (reader.StepCount == 0)
-                {
-                    reader.Close();
-                    sql_command = conn.CreateCommand();
-                    sql_command.CommandText = @"INSERT INTO users(lName, fName, mName, grup, login, pass) VALUES('" + 
-                                                lName.Text + "', '" + 
-                                                fName.Text + "', '" + 
-                                                mName.Text + "', '" + 
-                                                group.Text + "', '" +
-                                                login.Text + "', '" +
-                                                pass.Text + "')";
-
-                    sql_command.ExecuteNonQuery();
-                }
-                else
-                    MessageBox.Show("Пользователь с таким логином уже существует.");
-
-                MessageBox.Show("Пользователь успешно добавлен!", "Добавление пользователя", MessageBoxButton.OK, MessageBoxImage.Information);
-                load_user_list();
-                lName.Text = "";
-                fName.Text = "";
-                mName.Text = "";
-                group.Text = "";
-                login.Text = "";
-                pass.Text = "";
-            }
-            catch (SQLiteException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            connect_to_bd(@"INSERT INTO users(lName, fName, mName, grup, login, pass)
+                            VALUES '" +
+                                lName.Text + "', '" +
+                                fName.Text + "', '" +
+                                mName.Text + "', '" +
+                                group.Text + "', '" +
+                                login.Text + "', '" +
+                                pass.Text + "';", false);
         }
 
-        private void load_user_list()
+        private void delete_Click(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<tree_node> nodes = new ObservableCollection<tree_node>();
-            SQLiteConnection conn = new SQLiteConnection("Data Source=base.db; Version=3;");
-            try
-            {
-                List<string> temple_list = new List<string>();
-
-                conn.Open();
-                SQLiteCommand sql_command = conn.CreateCommand();
-                sql_command.CommandText = "SELECT grup FROM users";
-
-                SQLiteDataReader reader = sql_command.ExecuteReader();
-
-                foreach (DbDataRecord record in reader)
-                    temple_list.Add(reader["grup"].ToString());
-
-                temple_list = temple_list.Distinct().ToList();
-                foreach (string s in temple_list)
-                {
-                    reader.Close();
-                    ObservableCollection<tree_node> temple_nodes = new ObservableCollection<tree_node>();
-                    sql_command.CommandText = "SELECT * FROM users WHERE grup='" + s + "'";
-                    reader = sql_command.ExecuteReader();
-                    foreach (DbDataRecord record in reader)
-                    {
-                        string s_name = "";
-                        if (record[1].ToString() != "")
-                            s_name = record[1].ToString() + " " + record[2].ToString() + " " + record[3].ToString() + " (" + record[5].ToString() + ")";
-                        else
-                            s_name = record[5].ToString();
-                        temple_nodes.Add(new tree_node { Name = s_name });
-                    }
-
-                    nodes.Add(new tree_node { Name = s, Nodes = temple_nodes });
-                }
-            }
-
-            catch (SQLiteException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            all_users.ItemsSource = nodes;
+            connect_to_bd(@"DELETE FROM users WHERE login = '" + login.Text + "';", false);
         }
 
         private void all_users_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            TreeView tv = new TreeView();
-            tv = (TreeView)sender;
-            tree_node tvi = new tree_node();
-            tvi = (tree_node)tv.SelectedItem;
+            TreeView tv = (TreeView)sender;
+            tree_node tn = (tree_node)tv.SelectedItem;
 
-            SQLiteConnection conn = new SQLiteConnection("Data Source=base.db; Version=3;");
-            try
+            bool not_grup = true;
+            foreach(string g in grups)
             {
-                conn.Open();
-                SQLiteCommand sql_command = conn.CreateCommand();
-                if (tvi.Name.Contains("("))
-                    sql_command.CommandText = "SELECT * FROM users WHERE login='" + tvi.Name.Split('(')[1].Split(')')[0] + "'";
-                else
-                    sql_command.CommandText = "SELECT * FROM users WHERE login='" + tvi.Name + "'";
+                if (g == tn.Name)
+                {
+                    not_grup = false;
+                    break;
+                }
+            }
 
-                SQLiteDataReader reader = sql_command.ExecuteReader();
-                reader.Read();
-                
-                load_user_list();
-                lName.Text = reader[1].ToString();
-                fName.Text = "";
-                mName.Text = "";
-                group.Text = "";
-                login.Text = "";
-                pass.Text = "";
-            }
-            catch (SQLiteException ex)
+            List<List<string>> user_list = new List<List<string>>();
+            if (not_grup)
+                user_list = connect_to_bd("SELECT * FROM USERS");
+            
+            foreach (List<string> row in user_list)
             {
-                MessageBox.Show(ex.Message);
+                if (row[5] == tn.Name.Split('(')[1].Split(')')[0])
+                {
+                    lName.Text = row[1];
+                    fName.Text = row[2];
+                    mName.Text = row[3];
+                    group.Text = row[4];
+                    login.Text = row[5]; 
+                    pass.Text = row[6];
+                }
             }
+        }
+
+        private void add_theme_Click(object sender, RoutedEventArgs e)
+        {
+            browser_panel.Visibility = Visibility.Visible;
+            select_panel.Visibility = Visibility.Collapsed;
+            title_label.Content = "Курсы";
+        }
+
+        private void add_user_Click(object sender, RoutedEventArgs e)
+        {
+            user_panel.Visibility = Visibility.Visible;
+            select_panel.Visibility = Visibility.Collapsed;
+            title_label.Content = "Пользователи";
+        }
+
+        private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            user_panel.Visibility = Visibility.Collapsed;
+            browser_panel.Visibility = Visibility.Collapsed;
+            title_label.Content = "Главная";
+            select_panel.Visibility = Visibility.Visible;
         }
     }
 }

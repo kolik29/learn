@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:learn"
         mc:Ignorable="d"
-        Title="Система Дистанционного Обучения" Height="230.759" Width="248.645">
+        Title="Система Дистанционного Обучения" Height="230.759" Width="248.645" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="Button">
             <Style.Triggers>
@@ -30,7 +30,7 @@
             <Label Content="Логин:" VerticalAlignment="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" FontSize="14"/>
             <TextBox TextWrapping="Wrap" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5,0" FontSize="14" Padding="0,2" Name="login"/>
             <Label Content="Пароль:" VerticalAlignment="Top" HorizontalAlignment="Left" DockPanel.Dock="Top" FontSize="14"/>
-            <TextBox TextWrapping="Wrap" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5,0" FontSize="14" Padding="0,2" Name="pass"/>
+            <PasswordBox VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5,0" FontSize="14" Padding="0,2" Name="pass" Password="*"/>
             <Button Content="Войти" Height="40" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="5" Background="#FF01963F" Foreground="White" Template="{DynamicResource ButtonTemplate1}" Click="Button_Click"/>
         </DockPanel>
 
